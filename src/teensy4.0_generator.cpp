@@ -35,23 +35,23 @@ AudioSynthWaveform waveform7;
 AudioSynthWaveform waveform8;   
 AudioSynthWaveform waveform9;   
 
-AudioEffectEnvelope envelope1;  //xy=313,134
-AudioEffectEnvelope envelope2;  //xy=314,184
-AudioEffectEnvelope envelope3;  //xy=315,236
-AudioEffectEnvelope envelope5;  //xy=316,360
-AudioEffectEnvelope envelope4;  //xy=317,309
-AudioEffectEnvelope envelope6;  //xy=317,412
-AudioEffectEnvelope envelope7;  //xy=331,471
-AudioEffectEnvelope envelope8;  //xy=335,531
-AudioEffectEnvelope envelope9;  //xy=340,578
+AudioEffectEnvelope envelope1;
+AudioEffectEnvelope envelope2;
+AudioEffectEnvelope envelope3;
+AudioEffectEnvelope envelope5;
+AudioEffectEnvelope envelope4;
+AudioEffectEnvelope envelope6;
+AudioEffectEnvelope envelope7;
+AudioEffectEnvelope envelope8;
+AudioEffectEnvelope envelope9;
 
-AudioMixer4 mixer1;             //xy=583,223
-AudioMixer4 mixer2;             //xy=586,331
-AudioMixer4 mixer3;             //xy=583,427
+AudioMixer4 mixer1;
+AudioMixer4 mixer2;
+AudioMixer4 mixer3;
 
-AudioOutputI2SQuad i2s_quad1;     //xy=851,372
-AudioControlSGTL5000 sgtl5000_1;  //xy=599,571
-AudioControlSGTL5000 sgtl5000_2;  //xy=628,620
+AudioOutputI2SQuad i2s_quad1;
+AudioControlSGTL5000 sgtl5000_1;
+AudioControlSGTL5000 sgtl5000_2;
 
 AudioConnection patchCord1(waveform6, envelope6);
 AudioConnection patchCord2(waveform3, envelope3);
@@ -134,9 +134,6 @@ enum mode {
 
 // Wave file play counter
 int wavefile_play_counter = 0;
-
-// Potentiometer variables
-float a1history = 0, a2history = 0, a3history = 0, a4history = 0;
 
 // Microphone variables
 const int basseline = 530;
@@ -313,7 +310,7 @@ void get_modeChange_command() {
 
     // Peripheral may send less than requested
     while (Wire.available()) {
-      // receive a byte as character
+      // Receive a byte as character
       char c = Wire.read();
       get_switch_Id(c);
     }
@@ -362,8 +359,8 @@ void play_small_audience() {
 
   // Reset mixers
   for (int i = 0; i < 3; i++) {
-    mixers[i]->gain(0, 0.0);  //SD CARD
-    mixers[i]->gain(1, 0.0);  //SD CARD
+    mixers[i]->gain(0, 0.0);
+    mixers[i]->gain(1, 0.0);
     mixers[i]->gain(2, 0.0);
     mixers[i]->gain(3, 0.0);
   }
@@ -376,15 +373,15 @@ void play_small_audience() {
   AudioInterrupts();
 
   // Set wave theta increments
-  small_audience_theta[0] += 0.0750;  //0.075
-  small_audience_theta[1] += 0.0425;   //0.050
-  small_audience_theta[2] += 0.0115;   //0.075
-  small_audience_theta[3] += 0.0715;  //0.050
-  small_audience_theta[4] += 0.0525;  //0.03;
-  small_audience_theta[5] += 0.0215;   //0.015
-  small_audience_theta[6] += 0.045;  //0.050
-  small_audience_theta[7] += 0.0325;  //0.03;
-  small_audience_theta[8] += 0.0290;   //0.015
+  small_audience_theta[0] += 0.0750;
+  small_audience_theta[1] += 0.0425;
+  small_audience_theta[2] += 0.0115;
+  small_audience_theta[3] += 0.0715;
+  small_audience_theta[4] += 0.0525;
+  small_audience_theta[5] += 0.0215;
+  small_audience_theta[6] += 0.045;
+  small_audience_theta[7] += 0.0325;
+  small_audience_theta[8] += 0.0290;
 
   // Set frequency values
   float freqVals[9];
@@ -402,10 +399,10 @@ void play_small_audience() {
 
   // Do stuff with waveform
   for (int i = 0; i < 3; i++) {
-    mixers[i]->gain(0, 1.0);  // WAVEFORM
-    mixers[i]->gain(1, 1.0);  // WAVEFORM
-    mixers[i]->gain(2, 1.0);  // WAVEFORM
-    mixers[i]->gain(3, 0.0);  // NO
+    mixers[i]->gain(0, 1.0);
+    mixers[i]->gain(1, 1.0);
+    mixers[i]->gain(2, 1.0);
+    mixers[i]->gain(3, 0.0);
   }
 
   AudioNoInterrupts();
@@ -420,7 +417,6 @@ void play_small_audience() {
   // SPEAKER 3
   waveform7.frequency(((130) * freqVals[5]) + ((randNumber * coefficient) * freqVals[6]) + (mic_freq * freqVals[8]));
   waveform8.frequency(((200) * freqVals[6]) + ((randNumber * coefficient) * freqVals[7]) + (mic_freq * freqVals[8]));
-
 
   for (int i = 0; i < 9; i++) {
     waveform_envelopes[i]->noteOn();
@@ -454,11 +450,11 @@ void play_large_audience() {
   AudioInterrupts();
 
   // Set wave theta increments
-  large_audience_theta[0] += 0.065;  //0.06
-  large_audience_theta[1] += 0.1;    //0.04
+  large_audience_theta[0] += 0.065;
+  large_audience_theta[1] += 0.1;
   large_audience_theta[2] += 0.33;
-  large_audience_theta[3] += 0.087;  //0.055
-  large_audience_theta[4] += 0.12;   //0.035
+  large_audience_theta[3] += 0.087;  
+  large_audience_theta[4] += 0.12;  
   large_audience_theta[5] += 0.41;
   large_audience_theta[6] += 0.053;
   large_audience_theta[7] += 0.15;
@@ -480,10 +476,10 @@ void play_large_audience() {
 
   // Do stuff with waveform
   for (int i = 0; i < 3; i++) {
-    mixers[i]->gain(0, 1.0);  // WAVEFORM
-    mixers[i]->gain(1, 1.0);  // WAVEFORM
-    mixers[i]->gain(2, 1.0);  //
-    mixers[i]->gain(3, 0.0);  //
+    mixers[i]->gain(0, 1.0); 
+    mixers[i]->gain(1, 1.0);  
+    mixers[i]->gain(2, 1.0);  
+    mixers[i]->gain(3, 0.0); 
   }
 
   AudioNoInterrupts();
@@ -516,11 +512,11 @@ void setup() {
 
   Serial.println("SYSTEM STARTED");
 
+  // Initialize audio shields
   AudioMemory(50);
   sgtl5000_1.setAddress(LOW);
   sgtl5000_1.enable();
   sgtl5000_1.volume(1.0);
-
   sgtl5000_2.setAddress(HIGH);
   sgtl5000_2.enable();
   sgtl5000_2.volume(1.0);
@@ -551,7 +547,6 @@ void setup() {
     mixers[i]->gain(2, 0.0);
     mixers[i]->gain(3, 0.0);
   }
-
   // Waveform setup
   for (int i = 0; i < 9; i++) {
     waveForm[i]->begin(WAVEFORM_SINE);
@@ -559,7 +554,6 @@ void setup() {
     waveForm[i]->amplitude(1.0);
     waveForm[i]->pulseWidth(0.10);
   }
-
   // Envelopes for waveforms
   for (int i = 0; i < 9; i++) {
     waveform_envelopes[i]->attack(10.5);
@@ -569,7 +563,7 @@ void setup() {
     waveform_envelopes[i]->release(10);
   }
 
-  //initial start time`
+  //Initial start time`
   startMillis = millis();
   randomSeed(analogRead(A8));
 
@@ -590,14 +584,13 @@ void loop() {
     // AFTER A PERIOD OF TIME
     if (currentModeChangeMillis - startMicInteractionMillis >= modeChangePeriod) {
       get_modeChange_command();  // Get mode change command from I2C 
-
       silence = true;
       
       // Reset timer
       startMicInteractionMillis = currentModeChangeMillis;
     }
-  } else { // DO NOTING WHEN THE MIC INPUT EXISTS
-    
+  } else { 
+    // DO NOTING WHEN THE MIC INPUT EXISTS
     silence = false;
 
     init_theta();
@@ -637,7 +630,8 @@ void loop() {
                 play_large_audience();
               }
               break;
-
+            
+            // Device starts to activate with the large number of audiences     
             default:
               {
                 play_standby();
@@ -646,8 +640,7 @@ void loop() {
           }
         }
         break;
-      
-      // Do nothing. Only if there are no audeices for 5 min (Sleep mode?)
+      // Do nothing. Only if there are no audeices for 5 min (Sleep mode)
       default:
         {
           play_sleepMode();
