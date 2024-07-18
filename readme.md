@@ -1,4 +1,7 @@
-# Hidden dependency
+# Hidden dependency (Teensy4.0 Board)
+
+**_Frequency generator for 3 speakers connected to a Teensy 4.0 board with 2 Audio-shield rev D. This code allows the Teensy board 4.0 to generate certain frequencies for 3 speakers to draw laser patterns on the wall. It also has functions to interact between audiences and the device with a microphone module._**
+
 ## Introduction
 
 This work is an artistic research and experiment about dependent origination. According to this notion, a single event or being reflects only a fragment of the whole world and time, so that we can approximate a closer picture of the complex interconnection between every entity and its dependency by reassembling pieces of the whole.
