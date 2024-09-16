@@ -16,7 +16,7 @@ Video link: https://vimeo.com/957161334
 
 ## Interaction diagram
 This device produces the laser projection triggered by the Bluetooth signals nearby and reveals imperceptible but surely existing communication between machines that construct the moment in the area. When the audience reacts to the sound and laser pattern, the machine stops producing signals and becomes quiet. The machine starts talking only when people stop engaging and become silent and calm.
-![Hidden dependency image 2](/assets/images/diagram_web.jpg)
+![Hidden dependency image 2](/assets/images/diagram_1_web.jpg)
 
 ## Gallery
 ![Hidden dependency image 3](/assets/images/image_2.png)
